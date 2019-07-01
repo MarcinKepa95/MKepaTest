@@ -10,6 +10,8 @@ namespace TestConsoleApp1
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Hello World #Marcin Kepa");
+            Console.ReadKey();
         }
     }
 }
