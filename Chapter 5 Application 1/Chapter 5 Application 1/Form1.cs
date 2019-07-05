@@ -12,34 +12,31 @@ namespace Chapter_5_Application_1
 {
     public partial class Form1 : Form
     {
-        DinnerParty dinnerParty = new DinnerParty();
+        DinnerParty dinnerParty;
         public Form1()
         {
             InitializeComponent();
+            dinnerParty = new DinnerParty(25, FancyDecorations.Checked, HealthyOption.Checked);
             dinnerParty.NumberOfPeople = (int)numericUpDown1.Value;
-            dinnerParty.CalculateCostOfDecorations(FancyDecorations.Checked);
-            dinnerParty.SetHealthlyOption(HealthyOption.Checked);
-            Cost.Text = dinnerParty.CalculateCost(HealthyOption.Checked);
+            Cost.Text = dinnerParty.Cost.ToString("c");
         }
 
         private void FancyDecorations_CheckedChanged(object sender, EventArgs e)
         {
-            dinnerParty.CalculateCostOfDecorations(FancyDecorations.Checked);
-            Cost.Text = dinnerParty.CalculateCost(HealthyOption.Checked);
+            dinnerParty.FancyDecorations = FancyDecorations.Checked;
+            Cost.Text = dinnerParty.Cost.ToString("c");
         }
 
         private void NumericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             dinnerParty.NumberOfPeople = (int)numericUpDown1.Value;
-            dinnerParty.CalculateCostOfDecorations(FancyDecorations.Checked);
-            dinnerParty.SetHealthlyOption(HealthyOption.Checked);
-            Cost.Text = dinnerParty.CalculateCost(HealthyOption.Checked);
+            Cost.Text = dinnerParty.Cost.ToString("c");
         }
 
         private void HealthyOption_CheckedChanged(object sender, EventArgs e)
         {
-            dinnerParty.SetHealthlyOption(HealthyOption.Checked);
-            Cost.Text = dinnerParty.CalculateCost(HealthyOption.Checked);
+            dinnerParty.HealthyOption = HealthyOption.Checked;
+            Cost.Text = dinnerParty.Cost.ToString("c");
         }
     }
 }

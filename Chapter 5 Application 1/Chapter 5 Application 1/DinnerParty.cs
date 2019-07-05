@@ -8,37 +8,57 @@ namespace Chapter_5_Application_1
 {
     class DinnerParty
     {
-        const int CostForFoodPerPerson = 25;
-        public int NumberOfPeople;
-        private decimal CostOfBeveragesPerPerson;
-        private decimal CostOfDecorations;
+        private int costForFoodPerPerson;
+        public int CostForFoodPerPerson { get { return costForFoodPerPerson; } }
 
-        public void SetHealthlyOption(bool healthlyOption)
-        {
-            if (healthlyOption)
-            {
-                CostOfBeveragesPerPerson = 5m;
-            }
-            else CostOfBeveragesPerPerson = 20m;
-        }
+        private int numberOfPeople;
 
-        public void CalculateCostOfDecorations(bool fancyDecorations)
+        private decimal cost;
+        public decimal Cost
         {
-            if(fancyDecorations)
+            get
             {
-                CostOfDecorations = 50m + (15m * NumberOfPeople);
-            } else
-            {
-                CostOfDecorations = 30m + (7.5m * NumberOfPeople);
+                CalculateCostForBeveragesPerPerson();
+                CalculateCostForDecorative();
+                cost = CalculateCostForDecorative() + CalculateCostForBeveragesPerPerson() * NumberOfPeople + CostForFoodPerPerson * NumberOfPeople;
+                if (HealthyOption)
+                    cost -= 0.05M * cost;
+                return cost;
             }
         }
-
-        public string CalculateCost(bool healthlyOption)
+        public int NumberOfPeople
         {
-            decimal totalCost = CostOfDecorations + CostOfBeveragesPerPerson * NumberOfPeople + CostForFoodPerPerson * NumberOfPeople;
-            if (healthlyOption)
-                totalCost -= 0.05m * totalCost;
-            return "$" + totalCost.ToString("c");
+            get
+            {
+                return numberOfPeople;
+            }
+            set
+            {
+                numberOfPeople = value;
+            }
+        }
+        public bool FancyDecorations { get; set; }
+
+        public bool HealthyOption { get; set; }
+
+        private decimal CalculateCostForDecorative()
+        {
+            if (FancyDecorations)
+                return 15M * NumberOfPeople + 50M;
+            return 7.5M * NumberOfPeople + 30M;
+        }
+        private decimal CalculateCostForBeveragesPerPerson()
+        {
+            if (HealthyOption)
+                return 5M;
+            return 20M;
+        }
+
+        public DinnerParty(int costForFoodPerPerson, bool FancyDecorations, bool HealthyOption)
+        {
+            this.costForFoodPerPerson = costForFoodPerPerson;
+            this.FancyDecorations = FancyDecorations;
+            this.HealthyOption = HealthyOption;
         }
     }
 }
