@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.JobAssign = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
+            this.JobAssign = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
@@ -54,14 +54,31 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Worker Bee Assignment";
             // 
-            // label1
+            // numericUpDown1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(24, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Job";
+            this.numericUpDown1.Location = new System.Drawing.Point(202, 46);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(80, 20);
+            this.numericUpDown1.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(199, 30);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(33, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Shifts";
+            // 
+            // JobAssign
+            // 
+            this.JobAssign.Location = new System.Drawing.Point(6, 91);
+            this.JobAssign.Name = "JobAssign";
+            this.JobAssign.Size = new System.Drawing.Size(305, 23);
+            this.JobAssign.TabIndex = 2;
+            this.JobAssign.Text = "Assign this job to a bee";
+            this.JobAssign.UseVisualStyleBackColor = true;
+            this.JobAssign.Click += new System.EventHandler(this.JobAssign_Click);
             // 
             // comboBox1
             // 
@@ -80,30 +97,14 @@
             this.comboBox1.Tag = "";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.ComboBox1_SelectedIndexChanged);
             // 
-            // JobAssign
+            // label1
             // 
-            this.JobAssign.Location = new System.Drawing.Point(6, 91);
-            this.JobAssign.Name = "JobAssign";
-            this.JobAssign.Size = new System.Drawing.Size(305, 23);
-            this.JobAssign.TabIndex = 2;
-            this.JobAssign.Text = "Assign this job to a bee";
-            this.JobAssign.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(199, 30);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(33, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Shifts";
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(202, 46);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(80, 20);
-            this.numericUpDown1.TabIndex = 4;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(24, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Job";
             // 
             // button2
             // 
@@ -114,6 +115,7 @@
             this.button2.TabIndex = 5;
             this.button2.Text = "Work the next shift";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
             // textBox1
             // 
