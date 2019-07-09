@@ -1,4 +1,4 @@
-﻿namespace House_Application_Chapter_7
+﻿namespace HideAndSeekChapter7
 {
     partial class Form1
     {
@@ -28,10 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.Description = new System.Windows.Forms.TextBox();
             this.GoHere = new System.Windows.Forms.Button();
             this.GoOutside = new System.Windows.Forms.Button();
             this.Exits = new System.Windows.Forms.ComboBox();
+            this.CheckButton = new System.Windows.Forms.Button();
+            this.HideButton = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // Description
@@ -71,11 +75,38 @@
             this.Exits.Size = new System.Drawing.Size(252, 21);
             this.Exits.TabIndex = 3;
             // 
+            // CheckButton
+            // 
+            this.CheckButton.Location = new System.Drawing.Point(13, 245);
+            this.CheckButton.Name = "CheckButton";
+            this.CheckButton.Size = new System.Drawing.Size(334, 23);
+            this.CheckButton.TabIndex = 4;
+            this.CheckButton.Text = "check";
+            this.CheckButton.UseVisualStyleBackColor = true;
+            this.CheckButton.Click += new System.EventHandler(this.CheckButton_Click);
+            // 
+            // HideButton
+            // 
+            this.HideButton.Location = new System.Drawing.Point(13, 274);
+            this.HideButton.Name = "HideButton";
+            this.HideButton.Size = new System.Drawing.Size(334, 23);
+            this.HideButton.TabIndex = 5;
+            this.HideButton.Text = "Hide!";
+            this.HideButton.UseVisualStyleBackColor = true;
+            this.HideButton.Click += new System.EventHandler(this.HideButton_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 200;
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(359, 240);
+            this.ClientSize = new System.Drawing.Size(359, 329);
+            this.Controls.Add(this.HideButton);
+            this.Controls.Add(this.CheckButton);
             this.Controls.Add(this.Exits);
             this.Controls.Add(this.GoOutside);
             this.Controls.Add(this.GoHere);
@@ -93,6 +124,9 @@
         private System.Windows.Forms.Button GoHere;
         private System.Windows.Forms.Button GoOutside;
         private System.Windows.Forms.ComboBox Exits;
+        private System.Windows.Forms.Button CheckButton;
+        private System.Windows.Forms.Button HideButton;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
