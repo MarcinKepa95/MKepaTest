@@ -48,25 +48,35 @@ namespace Go_Fish_
 
             for(int i=0; i<players.Count; i++)
             {
+                int cardcount;
+                cardcount = players[i].CardCount;
+                List<Player> pl = new List<Player>();
+                pl.AddRange(players);
+                pl.Remove(players[i]);
                 if (i == 0)
-                    players[0].AskForACard(players, 0, stock, cardToAskFor);
-                else (players[i]).AskForACard(players, i, stock);
-                if(PullOutBooks(players[i]))
+                    players[0].AskForACard(pl, 0, stock, cardToAskFor);
+                else (players[i]).AskForACard(pl, i, stock);
+                if (PullOutBooks(players[i]))
+                {
                     textBoxOnForm.Text += players[i].Name
                         + " drew a new hand" + Environment.NewLine;
-                int card = 1;
-                while(card<=5 && stock.Count>0)
-                {
-                    players[i].TakeCard(stock.Deal());
-                    card++;
+                    int card = 1;
+                    while (card <= 5 && stock.Count > 0)
+                    {
+                        players[i].TakeCard(stock.Deal());
+                        card++;
+                    }
                 }
-                players[0].SortHand();
+                else if (cardcount == players[i].CardCount)
+                    players[i].TakeCard(stock.Deal());
+                
                 if(stock.Count==0)
                 {
                     textBoxOnForm.Text = "The stock is out of cards! Game Over!"+ Environment.NewLine;
                     return true;
                 }
             }
+            players[0].SortHand();
             return false;
             // Play one round of the game. The parameter is the card the player selected
             // from his hand—get its value. Then go through all of the players and call
