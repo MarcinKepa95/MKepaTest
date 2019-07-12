@@ -48,14 +48,10 @@ namespace Go_Fish_
 
             for(int i=0; i<players.Count; i++)
             {
-                int cardcount;
-                cardcount = players[i].CardCount;
-                List<Player> pl = new List<Player>();
-                pl.AddRange(players);
-                pl.Remove(players[i]);
+                int cardcount = players[i].CardCount;
                 if (i == 0)
-                    players[0].AskForACard(pl, 0, stock, cardToAskFor);
-                else (players[i]).AskForACard(pl, i, stock);
+                    players[0].AskForACard(players, 0, stock, cardToAskFor);
+                else players[i].AskForACard(players, i, stock);
                 if (PullOutBooks(players[i]))
                 {
                     textBoxOnForm.Text += players[i].Name
@@ -74,6 +70,20 @@ namespace Go_Fish_
                 {
                     textBoxOnForm.Text = "The stock is out of cards! Game Over!"+ Environment.NewLine;
                     return true;
+                }
+            }
+            for(int i=0; i<players.Count; i++)
+            {
+                if (PullOutBooks(players[i]))
+                {
+                    textBoxOnForm.Text += players[i].Name
+                        + " drew a new hand" + Environment.NewLine;
+                    int card = 1;
+                    while (card <= 5 && stock.Count > 0)
+                    {
+                        players[i].TakeCard(stock.Deal());
+                        card++;
+                    }
                 }
             }
             players[0].SortHand();

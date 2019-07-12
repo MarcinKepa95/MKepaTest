@@ -69,11 +69,14 @@ namespace Go_Fish_
             int DeckCount = CardCount;
             foreach(Player player in players)
             {
-                Deck deck = player.DoYouHaveAny(value);
-                while (deck.Count > 0)
+                if (player != this)
                 {
-                    DeckCount++;
-                    TakeCard(deck.Deal(0));
+                    Deck deck = player.DoYouHaveAny(value);
+                    while (deck.Count > 0)
+                    {
+                        DeckCount++;
+                        TakeCard(deck.Deal(0));
+                    }
                 }
             }
             if (DeckCount == 0)
