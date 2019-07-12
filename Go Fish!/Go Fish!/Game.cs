@@ -30,10 +30,11 @@ namespace Go_Fish_
         private void Deal()
         {
             stock.Shuffle();
-            foreach(Player player in players)
-            {
                 for(int i=0; i<5; i++)
-                    player.TakeCard(stock.Deal(0));
+                    foreach (Player player in players)
+                        player.TakeCard(stock.Deal(0));
+            foreach (Player player in players)
+            {
                 player.PullOutBooks();
             }
             // This is where the game starts—this method's only called at the beginning
@@ -42,6 +43,41 @@ namespace Go_Fish_
         }
         public bool PlayOneRound(int selectedPlayerCard)
         {
+            
+            Value cardToAskFor = players[0].Peek(selectedPlayerCard).value;
+
+            for(int i=0; i<players.Count; i++)
+            {
+                int cardcount;
+                cardcount = players[i].CardCount;
+                List<Player> pl = new List<Player>();
+                pl.AddRange(players);
+                pl.Remove(players[i]);
+                if (i == 0)
+                    players[0].AskForACard(pl, 0, stock, cardToAskFor);
+                else (players[i]).AskForACard(pl, i, stock);
+                if (PullOutBooks(players[i]))
+                {
+                    textBoxOnForm.Text += players[i].Name
+                        + " drew a new hand" + Environment.NewLine;
+                    int card = 1;
+                    while (card <= 5 && stock.Count > 0)
+                    {
+                        players[i].TakeCard(stock.Deal());
+                        card++;
+                    }
+                }
+                else if (cardcount == players[i].CardCount)
+                    players[i].TakeCard(stock.Deal());
+                
+                if(stock.Count==0)
+                {
+                    textBoxOnForm.Text = "The stock is out of cards! Game Over!"+ Environment.NewLine;
+                    return true;
+                }
+            }
+            players[0].SortHand();
+            return false;
             // Play one round of the game. The parameter is the card the player selected
             // from his hand—get its value. Then go through all of the players and call
             // each one's AskForACard() methods, starting with the human player (who's
@@ -55,17 +91,64 @@ namespace Go_Fish_
         }
         public bool PullOutBooks(Player player)
         {
+            IEnumerable<Value> k = player.PullOutBooks();
+            foreach (Value key in k)
+            {
+                books.Add(key, player);
+            }
+            if (player.CardCount == 0)
+                return true;
+            return false;
             // Pull out a player's books. Return true if the player ran out of cards, otherwise
             // return false. Each book is added to the Books dictionary. A player runs out of
             // cards when he’'s used all of his cards to make books—and he wins the game.
         }
         public string DescribeBooks()
         {
+            string describestring="";
+            foreach(Value key in books.Keys)
+            {
+                describestring += books[key].Name + " has a book of " + key+ Environment.NewLine;
+            }
+            return describestring;
             // Return a long string that describes everyone's books by looking at the Books
             // dictionary: "Joe has a book of sixes. (line break) Ed has a book of Aces."
         }
         public string GetWinnerName()
         {
+            Dictionary<string, int> winners = new Dictionary<string, int>();
+            int thebiggest = 0;
+            string message = "";
+            bool tie = false;
+
+            foreach (Value value in books.Keys)
+            {
+                if (winners.ContainsKey(books[value].Name))
+                    winners[books[value].Name]++;
+                else
+                    winners.Add(books[value].Name, 1);
+                if (thebiggest < winners[books[value].Name])
+                    thebiggest = winners[books[value].Name];
+            }
+            foreach (string name in winners.Keys)
+            {
+                if (thebiggest < winners[name])
+                    thebiggest = winners[name];
+            }
+            foreach (string name in winners.Keys)
+            {
+                if (winners[name] == thebiggest)
+                    if (String.IsNullOrEmpty(message))
+                        message = name;
+                    else
+                    {
+                        tie = true;
+                        message += " and " + name;
+                    }
+            }
+            if (tie)
+                return "A tie between " + message + " with " + thebiggest + " books";
+            return message + " with " + thebiggest + " books";
             // This method is called at the end of the game. It uses its own dictionary
             // (Dictionary<string, int> winners) to keep track of how many books each player
             // ended up with in the books dictionary. First it uses a foreach loop

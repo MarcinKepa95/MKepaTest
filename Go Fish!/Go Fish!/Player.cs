@@ -19,8 +19,10 @@ namespace Go_Fish_
             this.textBoxOnForm = textBoxOnForm;
             this.name = name;
             this.random = random;
+            List<Card> cart = new List<Card>();
+            cards = new Deck(cart);
 
-            textBoxOnForm.Text += Name + " has just joined the game\n\r";
+            textBoxOnForm.Text += Name + " has just joined the game" + Environment.NewLine;
         }
         public IEnumerable<Value> PullOutBooks()
         {
@@ -53,7 +55,7 @@ namespace Go_Fish_
         {
             Deck exactCards = cards.PullOutValues(value);
             if (exactCards.Count > 0)
-                textBoxOnForm.Text += Name + " has " + exactCards.Count + " " + Card.Plural(value);
+                textBoxOnForm.Text += Name + " has " + exactCards.Count + " " + Card.Plural(value) + "\r\n";
             SortHand();
             return exactCards;
         }
@@ -63,7 +65,7 @@ namespace Go_Fish_
         }
         public void AskForACard(List<Player> players, int myIndex, Deck stock, Value value)
         {
-            textBoxOnForm.Text += Name + " asks if anyone has a " + value+"\r\n";
+            textBoxOnForm.Text += Name + " asks if anyone has a " + value+Environment.NewLine;
             int DeckCount = CardCount;
             foreach(Player player in players)
             {
