@@ -19,6 +19,20 @@ namespace Chapter_8_Application_5
                 new Duck {Size = 14, kindof = KindofDuck.Muscovy, Name = "Sick" },
                 new Duck {Size = 13, kindof = KindofDuck.Decoy, Name = "Bick" },
             };
+
+            #region ducks as queue
+            /*
+            Queue<Duck> ducks = new Queue<Duck>();
+            ducks.Enqueue(new Duck { Size = 17, kindof = KindofDuck.Muscovy, Name = "Dick" });
+            ducks.Enqueue(new Duck { Size = 18, kindof = KindofDuck.Mallard, Name = "Nick" });
+            ducks.Enqueue(new Duck { Size = 14, kindof = KindofDuck.Decoy, Name = "Hick" });
+            ducks.Enqueue(new Duck { Size = 11, kindof = KindofDuck.Mallard, Name = "Sick" });
+            ducks.Enqueue(new Duck { Size = 14, kindof = KindofDuck.Muscovy, Name = "Fick" });
+            ducks.Enqueue(new Duck { Size = 13, kindof = KindofDuck.Decoy, Name = "Bick" });
+            */
+            #endregion
+
+
             IEnumerable<Bird> upcastDucks = ducks;
 
             List<Bird> birds = new List<Bird>();
