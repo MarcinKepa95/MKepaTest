@@ -63,9 +63,8 @@ namespace ExcusesManager
                 return;
             }
             saveFileDialog1.InitialDirectory = Folder;
-            saveFileDialog1.Filter = "Excuses files (*.excuse)|*.excuse|All files (*.*)|*.*";
-
-            saveFileDialog1.FileName = description.Text;
+            saveFileDialog1.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 currentexcuse.SaveFile(saveFileDialog1.FileName);
@@ -106,7 +105,7 @@ namespace ExcusesManager
             if(CheckChanged())
             {
                 openFileDialog1.InitialDirectory = Folder;
-                openFileDialog1.Filter = "Excuses files (*.excuse)|*.excuse|All files (*.*)|*.*";
+                openFileDialog1.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
                 //openFileDialog1.FileName = description.Text + ".txt";
                 if(openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
