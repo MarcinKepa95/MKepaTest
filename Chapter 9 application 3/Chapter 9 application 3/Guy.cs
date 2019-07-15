@@ -1,0 +1,46 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+using System.Runtime.Serialization.Formatters;
+
+namespace Chapter_9_Application_3
+{
+    [Serializable]
+    class Guy
+    {
+        public string Name;
+        public int Cash;
+
+        public int GiveCash(int amount)
+        {
+            if (amount<=Cash && amount>0)
+            {
+                Cash -= amount;
+                return amount;
+            }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("I dont have enough cash to give you "
+                    + amount, Name +" says... ");
+                return 0;
+            }
+        }
+
+        public int ReceiveCash(int amount)
+        {
+            if(amount>0)
+            {
+                Cash += amount;
+                return amount;
+            }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show(amount + " isn't an amount I'll take ", Name + " says...");
+                return 0;
+            }
+        }
+    }
+}

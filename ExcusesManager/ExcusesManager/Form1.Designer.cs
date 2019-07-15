@@ -41,6 +41,8 @@
             this.results = new System.Windows.Forms.TextBox();
             this.fileDate = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // button1
@@ -55,6 +57,7 @@
             // 
             // button2
             // 
+            this.button2.Enabled = false;
             this.button2.Location = new System.Drawing.Point(95, 136);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
@@ -65,21 +68,25 @@
             // 
             // button3
             // 
+            this.button3.Enabled = false;
             this.button3.Location = new System.Drawing.Point(258, 135);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 3;
             this.button3.Text = "Random";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
             // 
             // button4
             // 
+            this.button4.Enabled = false;
             this.button4.Location = new System.Drawing.Point(176, 136);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 2;
             this.button4.Text = "Open";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.Button4_Click);
             // 
             // label1
             // 
@@ -96,6 +103,7 @@
             this.description.Name = "description";
             this.description.Size = new System.Drawing.Size(251, 20);
             this.description.TabIndex = 5;
+            this.description.TextChanged += new System.EventHandler(this.Description_TextChanged);
             // 
             // lastUsed
             // 
@@ -103,6 +111,7 @@
             this.lastUsed.Name = "lastUsed";
             this.lastUsed.Size = new System.Drawing.Size(251, 20);
             this.lastUsed.TabIndex = 6;
+            this.lastUsed.ValueChanged += new System.EventHandler(this.LastUsed_ValueChanged);
             // 
             // label2
             // 
@@ -137,6 +146,7 @@
             this.results.Name = "results";
             this.results.Size = new System.Drawing.Size(251, 20);
             this.results.TabIndex = 10;
+            this.results.TextChanged += new System.EventHandler(this.Results_TextChanged);
             // 
             // fileDate
             // 
@@ -146,6 +156,10 @@
             this.fileDate.Size = new System.Drawing.Size(251, 20);
             this.fileDate.TabIndex = 11;
             this.fileDate.Text = "Last Used";
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // Form1
             // 
@@ -186,6 +200,8 @@
         private System.Windows.Forms.TextBox results;
         private System.Windows.Forms.Label fileDate;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 

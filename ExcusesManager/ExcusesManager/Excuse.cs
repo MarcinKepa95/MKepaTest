@@ -16,36 +16,35 @@ namespace ExcusesManager
 
         private void OpenFile(string path)
         {
+            ExcusePath = path;
             using (StreamReader reader = new StreamReader(path))
             {
                 Description = reader.ReadLine();
                 Results = reader.ReadLine();
-                DateTime.Parse(reader.ReadLine());
+                LastUsed = Convert.ToDateTime(reader.ReadLine());
             }
         }
         public void SaveFile(string path)
         {
-            using (StreamWriter sw = new StreamWriter(path+@"\"+Description))
+            using (StreamWriter sw = new StreamWriter(path+".txt"))
             {
                 sw.WriteLine(Description);
                 sw.WriteLine(Results);
-                sw.WriteLine(LastUsed.ToString());
+                sw.WriteLine(LastUsed);
             }
         }
         public Excuse()
         {
-            ;
+            ExcusePath = "";
         }
-        public Excuse(string Description, string Results, string ExcusePath)
+        public Excuse(Random random, string folder)
         {
-            this.Description = Description;
-            this.Results = Results;
-            this.ExcusePath = ExcusePath;
+            string[] filenames = Directory.GetFiles(folder, "*.txt");
+            OpenFile(filenames[random.Next(filenames.Length)]);
         }
         public Excuse(string path)
         {
             OpenFile(path);
-            ExcusePath = path;
         }
     }
 }
