@@ -34,6 +34,7 @@ namespace The_Quest
         
         public void IncreaseHealth(int health, Random random)
         {
+            Console.WriteLine(HitPoints);
             HitPoints += random.Next(1, health);
         }
 
@@ -73,7 +74,11 @@ namespace The_Quest
             if (equippedWeapon == null)
                 return;
             equippedWeapon.Attack(direction,random);
-
+            if (equippedWeapon is IPotion)
+            {
+                inventory.Remove(equippedWeapon);
+                equippedWeapon = null;
+            }
         }
 
     }

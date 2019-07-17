@@ -36,7 +36,6 @@ namespace The_Quest
         private void transparencyToObject(Control control)
         {
             control.BackColor = Color.Transparent;
-            control.Parent = generalBackground;
         }
         private void TableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
@@ -65,25 +64,31 @@ namespace The_Quest
                 {
                     Bat.Location = enemies.Location;
                     BatHP.Text = enemies.HitPoints.ToString();
-                    if (enemies.HitPoints > 0)
+                    if (!enemies.Dead)
+                    {
                         showbat = true;
-                    enemiesShown++;
+                        enemiesShown++;
+                    }
                 }
                 if (enemies is Ghost)
                 {
                     Ghost.Location = enemies.Location;
                     GhostHP.Text = enemies.HitPoints.ToString();
-                    if (enemies.HitPoints > 0)
+                    if (!enemies.Dead)
+                    {
                         showghost = true;
-                    enemiesShown++;
+                        enemiesShown++;
+                    }
                 }
                 if (enemies is Ghoul)
                 {
                     Ghoul.Location = enemies.Location;
                     GhoulHP.Text = enemies.HitPoints.ToString();
-                    if (enemies.HitPoints > 0)
+                    if (!enemies.Dead)
+                    {
                         showghoul = true;
-                    enemiesShown++;
+                        enemiesShown++;
+                    }
                 }
 
             }
@@ -142,6 +147,12 @@ namespace The_Quest
                     bluePotionInEq.Visible = true; 
                 if (name == "Red Potion")
                     RedPotionInEq.Visible = true; 
+            }
+            if(enemiesShown<1)
+            {
+                MessageBox.Show("You defeat all enemies on this level");
+                game.NewLevel(random);
+                UpdateCharacters();
             }
         }
         private Label PlayerText, PlayerHP;
@@ -208,26 +219,51 @@ namespace The_Quest
         private void Weapon1_Click(object sender, EventArgs e)
         {
             game.Equip("Sword");
+            Weapon1.BorderStyle = BorderStyle.Fixed3D;
+            Weapon2.BorderStyle = BorderStyle.FixedSingle;
+            Weapon3.BorderStyle = BorderStyle.FixedSingle;
+            bluePotionInEq.BorderStyle = BorderStyle.FixedSingle;
+            RedPotionInEq.BorderStyle = BorderStyle.FixedSingle;
         }
 
         private void Weapon2_Click(object sender, EventArgs e)
         {
             game.Equip("Bow");
+            Weapon1.BorderStyle = BorderStyle.FixedSingle;
+            Weapon2.BorderStyle = BorderStyle.Fixed3D;
+            Weapon3.BorderStyle = BorderStyle.FixedSingle;
+            bluePotionInEq.BorderStyle = BorderStyle.FixedSingle;
+            RedPotionInEq.BorderStyle = BorderStyle.FixedSingle;
         }
 
         private void Weapon3_Click(object sender, EventArgs e)
         {
             game.Equip("Mace");
+            Weapon1.BorderStyle = BorderStyle.FixedSingle;
+            Weapon2.BorderStyle = BorderStyle.FixedSingle;
+            Weapon3.BorderStyle = BorderStyle.Fixed3D;
+            bluePotionInEq.BorderStyle = BorderStyle.FixedSingle;
+            RedPotionInEq.BorderStyle = BorderStyle.FixedSingle;
         }
 
         private void BluePotionInEq_Click(object sender, EventArgs e)
         {
             game.Equip("Blue Potion");
+            Weapon1.BorderStyle = BorderStyle.FixedSingle;
+            Weapon2.BorderStyle = BorderStyle.FixedSingle;
+            Weapon3.BorderStyle = BorderStyle.FixedSingle;
+            bluePotionInEq.BorderStyle = BorderStyle.Fixed3D;
+            RedPotionInEq.BorderStyle = BorderStyle.FixedSingle;
         }
 
         private void RedPotionInEq_Click(object sender, EventArgs e)
         {
             game.Equip("Red Potion");
+            Weapon1.BorderStyle = BorderStyle.FixedSingle;
+            Weapon2.BorderStyle = BorderStyle.FixedSingle;
+            Weapon3.BorderStyle = BorderStyle.FixedSingle;
+            bluePotionInEq.BorderStyle = BorderStyle.FixedSingle;
+            RedPotionInEq.BorderStyle = BorderStyle.Fixed3D;
         }
 
         private void UpAttack_Click(object sender, EventArgs e)

@@ -19,32 +19,25 @@ namespace The_Quest
 
         protected bool DamageEnemy(Direction direction, int radius, int damage, Random random)
         {
+            //Początkowa pozycja w której najpierw "znajduje się broń"
             Point target = game.PlayerLocation;
-            for(int distance = 0; distance<radius;distance++)
+
+            for (int distance = 1; distance < radius; distance++)
             {
                 foreach (Enemy enemy in game.Enemies)
                 {
+                    //jeśli konkretny przeciwnik jest w zasięgu broni to go pierdolnij
                     if (Nearby(enemy.Location, target, distance))
                     {
                         enemy.Hit(damage, random);
                         return true;
                     }
                 }
+                //jeśli żaden z przeciwników nie jest w zasięgu broni to przesuń broń o 10 jednostek
+                //w konkretnym kierunku
                 target = Move(direction, target, game.Boundaries);
             }
             return false;
-        }
-        public bool Nearby(Point enemylocation, Point target, int distance)
-        {
-            if (Math.Abs(target.X - enemylocation.X) < distance &&
-                (Math.Abs(target.Y - enemylocation.Y) < distance))
-                return true;
-            return false;
-        }
-        public Point Move(Direction direction, Point target, Rectangle boundaries)
-        {
-            target = Move(direction, boundaries);
-            return target;
         }
         
         public Weapon(Game game, Point location)

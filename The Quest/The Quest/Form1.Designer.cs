@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.generalBackground = new System.Windows.Forms.PictureBox();
             this.table = new System.Windows.Forms.TableLayoutPanel();
             this.LeftAttack = new System.Windows.Forms.Button();
             this.RightAttack = new System.Windows.Forms.Button();
@@ -55,7 +54,6 @@
             this.Weapon3 = new System.Windows.Forms.PictureBox();
             this.bluePotionInEq = new System.Windows.Forms.PictureBox();
             this.RedPotionInEq = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.generalBackground)).BeginInit();
             this.attackGroupBox.SuspendLayout();
             this.moveGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Hero)).BeginInit();
@@ -73,17 +71,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.bluePotionInEq)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RedPotionInEq)).BeginInit();
             this.SuspendLayout();
-            // 
-            // generalBackground
-            // 
-            this.generalBackground.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("generalBackground.BackgroundImage")));
-            this.generalBackground.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.generalBackground.Image = ((System.Drawing.Image)(resources.GetObject("generalBackground.Image")));
-            this.generalBackground.Location = new System.Drawing.Point(0, 0);
-            this.generalBackground.Name = "generalBackground";
-            this.generalBackground.Size = new System.Drawing.Size(600, 400);
-            this.generalBackground.TabIndex = 0;
-            this.generalBackground.TabStop = false;
             // 
             // table
             // 
@@ -304,10 +291,12 @@
             // 
             // Weapon1
             // 
+            this.Weapon1.BackColor = System.Drawing.Color.Transparent;
+            this.Weapon1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Weapon1.Image = ((System.Drawing.Image)(resources.GetObject("Weapon1.Image")));
             this.Weapon1.Location = new System.Drawing.Point(68, 318);
             this.Weapon1.Name = "Weapon1";
-            this.Weapon1.Size = new System.Drawing.Size(50, 50);
+            this.Weapon1.Size = new System.Drawing.Size(52, 52);
             this.Weapon1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.Weapon1.TabIndex = 17;
             this.Weapon1.TabStop = false;
@@ -315,10 +304,12 @@
             // 
             // Weapon2
             // 
+            this.Weapon2.BackColor = System.Drawing.Color.Transparent;
+            this.Weapon2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Weapon2.Image = ((System.Drawing.Image)(resources.GetObject("Weapon2.Image")));
             this.Weapon2.Location = new System.Drawing.Point(124, 318);
             this.Weapon2.Name = "Weapon2";
-            this.Weapon2.Size = new System.Drawing.Size(50, 50);
+            this.Weapon2.Size = new System.Drawing.Size(52, 52);
             this.Weapon2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.Weapon2.TabIndex = 18;
             this.Weapon2.TabStop = false;
@@ -326,10 +317,12 @@
             // 
             // Weapon3
             // 
+            this.Weapon3.BackColor = System.Drawing.Color.Transparent;
+            this.Weapon3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Weapon3.Image = ((System.Drawing.Image)(resources.GetObject("Weapon3.Image")));
             this.Weapon3.Location = new System.Drawing.Point(180, 318);
             this.Weapon3.Name = "Weapon3";
-            this.Weapon3.Size = new System.Drawing.Size(50, 50);
+            this.Weapon3.Size = new System.Drawing.Size(52, 52);
             this.Weapon3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.Weapon3.TabIndex = 19;
             this.Weapon3.TabStop = false;
@@ -337,10 +330,12 @@
             // 
             // bluePotionInEq
             // 
+            this.bluePotionInEq.BackColor = System.Drawing.Color.Transparent;
+            this.bluePotionInEq.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.bluePotionInEq.Image = ((System.Drawing.Image)(resources.GetObject("bluePotionInEq.Image")));
             this.bluePotionInEq.Location = new System.Drawing.Point(236, 318);
             this.bluePotionInEq.Name = "bluePotionInEq";
-            this.bluePotionInEq.Size = new System.Drawing.Size(50, 50);
+            this.bluePotionInEq.Size = new System.Drawing.Size(52, 52);
             this.bluePotionInEq.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.bluePotionInEq.TabIndex = 20;
             this.bluePotionInEq.TabStop = false;
@@ -348,10 +343,12 @@
             // 
             // RedPotionInEq
             // 
+            this.RedPotionInEq.BackColor = System.Drawing.Color.Transparent;
+            this.RedPotionInEq.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.RedPotionInEq.Image = ((System.Drawing.Image)(resources.GetObject("RedPotionInEq.Image")));
             this.RedPotionInEq.Location = new System.Drawing.Point(290, 318);
             this.RedPotionInEq.Name = "RedPotionInEq";
-            this.RedPotionInEq.Size = new System.Drawing.Size(50, 50);
+            this.RedPotionInEq.Size = new System.Drawing.Size(52, 52);
             this.RedPotionInEq.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.RedPotionInEq.TabIndex = 21;
             this.RedPotionInEq.TabStop = false;
@@ -361,6 +358,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(600, 400);
             this.Controls.Add(this.RedPotionInEq);
             this.Controls.Add(this.bluePotionInEq);
@@ -379,7 +377,6 @@
             this.Controls.Add(this.moveGroupBox);
             this.Controls.Add(this.attackGroupBox);
             this.Controls.Add(this.table);
-            this.Controls.Add(this.generalBackground);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -387,7 +384,6 @@
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "The Quest";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.generalBackground)).EndInit();
             this.attackGroupBox.ResumeLayout(false);
             this.moveGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Hero)).EndInit();
@@ -410,8 +406,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox generalBackground;
         private System.Windows.Forms.TableLayoutPanel table;
         private System.Windows.Forms.Button LeftAttack;
         private System.Windows.Forms.Button RightAttack;

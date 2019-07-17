@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace The_Quest
 {
@@ -35,7 +36,8 @@ namespace The_Quest
             player.Move(direction);
             foreach(Enemy enemy in Enemies)
             {
-                enemy.Move(random);
+                if(enemy.HitPoints>0)
+                    enemy.Move(random);
             }
         }
 
@@ -63,7 +65,8 @@ namespace The_Quest
             player.Attack(direction, random);
             foreach(Enemy enemy in Enemies)
             {
-                enemy.Move(random);
+                if(enemy.HitPoints>0)
+                    enemy.Move(random);
             }
         }
         private Point GetRandomLocation(Random random)
@@ -123,12 +126,13 @@ namespace The_Quest
                     new Ghost(this, GetRandomLocation(random)),
                     new Ghoul(this, GetRandomLocation(random))};
                     if (CheckPlayerEquipment("Mace"))
-                        if (!CheckPlayerEquipment("Red Potion"))
-                            WeaponInRoom = new RedPotion(this, GetRandomLocation(random));
+                        WeaponInRoom = new RedPotion(this, GetRandomLocation(random));
+                    else
                     WeaponInRoom = new Mace(this, GetRandomLocation(random));
                     break;
                 case 8:
-                    
+                    MessageBox.Show("Gratulation! U Won");
+                    Application.Exit();
                     break;
             }
         }
