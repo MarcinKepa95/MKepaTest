@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Windows.Controls;
+using System.Xaml;
 
-namespace Go_Fish_
+namespace Go_Fish_WPF_
 {
     class Player
     {
@@ -14,6 +15,7 @@ namespace Go_Fish_
         private Random random;
         private Deck cards;
         private TextBox textBoxOnForm;
+        
         public Player(String name, Random random, TextBox textBoxOnForm)
         {
             this.textBoxOnForm = textBoxOnForm;

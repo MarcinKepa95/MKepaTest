@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29020.237
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Go Fish WPF!", "Go Fish WPF!\Go Fish WPF!.csproj", "{32EF00AE-B2D5-475C-AC85-7A23EB8F4BDC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{32EF00AE-B2D5-475C-AC85-7A23EB8F4BDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32EF00AE-B2D5-475C-AC85-7A23EB8F4BDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32EF00AE-B2D5-475C-AC85-7A23EB8F4BDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32EF00AE-B2D5-475C-AC85-7A23EB8F4BDC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {711E6499-D409-4C2A-9180-5D666CD0B63F}
+	EndGlobalSection
+EndGlobal

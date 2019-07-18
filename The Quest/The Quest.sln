@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29020.237
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Quest", "The Quest\The Quest.csproj", "{6C80DB72-7136-4CE9-9888-008DB7CBC4F0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6C80DB72-7136-4CE9-9888-008DB7CBC4F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C80DB72-7136-4CE9-9888-008DB7CBC4F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C80DB72-7136-4CE9-9888-008DB7CBC4F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C80DB72-7136-4CE9-9888-008DB7CBC4F0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B669AA88-99DA-473E-AE7C-51CA98A20280}
+	EndGlobalSection
+EndGlobal
