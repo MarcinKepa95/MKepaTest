@@ -21,16 +21,17 @@ namespace SloppyJoe
     public partial class MainWindow : Window
     {
 
-        MenuMaker menuMaker = new MenuMaker();
+        //MenuMaker menuMaker = new MenuMaker();
         public MainWindow()
         {
             InitializeComponent();
 
-            pageLayoutStackPanel.DataContext = menuMaker;
+            //pageLayoutStackPanel.DataContext = menuMaker;
         }
 
         private void NewMenu_Click(object sender, RoutedEventArgs e)
         {
+            MenuMaker menuMaker = FindResource("menuMaker") as MenuMaker;
             menuMaker.UpdateMenu();
         }
     }

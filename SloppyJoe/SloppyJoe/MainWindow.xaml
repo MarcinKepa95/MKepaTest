@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:SloppyJoe"
         mc:Ignorable="d"
         Title="Welcome to Sloppy Joe's" Height="450" Width="800">
-    <StackPanel Margin="5" x:Name="pageLayoutStackPanel">
+    <Window.Resources>
+        <local:MenuMaker x:Key="menuMaker"/>
+    </Window.Resources>
+    <StackPanel Margin="5" x:Name="pageLayoutStackPanel" DataContext="{StaticResource ResourceKey=menuMaker}">
         <StackPanel>
             <TextBlock Text="Number of Items"/>
             <StackPanel Orientation="Horizontal" Margin="5">
