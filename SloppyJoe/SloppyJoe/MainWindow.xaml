@@ -1,0 +1,23 @@
+﻿<Window x:Class="SloppyJoe.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SloppyJoe"
+        mc:Ignorable="d"
+        Title="Welcome to Sloppy Joe's" Height="450" Width="800">
+    <StackPanel Margin="5" x:Name="pageLayoutStackPanel">
+        <StackPanel>
+            <TextBlock Text="Number of Items"/>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <TextBox Width="100" Height="20" Margin="0,5,5,5" Text="{Binding NumberOfItems, Mode=TwoWay}"/>
+                <Button x:Name="newMenu" Content="Make a new menu" Margin="0,5,0,5" Click="NewMenu_Click"/>
+            </StackPanel>
+            <ListView ItemsSource="{Binding Menu}"/>
+            <TextBlock>
+                <Run Text="This menu was generated on "/>
+                <Run Text="{Binding GeneratedDate}"/>
+            </TextBlock>
+        </StackPanel>
+    </StackPanel>
+</Window>

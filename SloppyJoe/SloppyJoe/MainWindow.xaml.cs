@@ -13,19 +13,25 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Lumberjacks_in_WPF
+namespace SloppyJoe
 {
     /// <summary>
     /// Logika interakcji dla klasy MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        Guy joe;
+
+        MenuMaker menuMaker = new MenuMaker();
         public MainWindow()
         {
             InitializeComponent();
-            joe = new Guy("Joe",)
-            
+
+            pageLayoutStackPanel.DataContext = menuMaker;
+        }
+
+        private void NewMenu_Click(object sender, RoutedEventArgs e)
+        {
+            menuMaker.UpdateMenu();
         }
     }
 }
