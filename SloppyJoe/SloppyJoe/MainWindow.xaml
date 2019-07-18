@@ -19,7 +19,7 @@
             <ListView ItemsSource="{Binding Menu}"/>
             <TextBlock>
                 <Run Text="This menu was generated on "/>
-                <Run Text="{Binding GeneratedDate}"/>
+                <Run x:Name="Updatetext" Text="{Binding GeneratedDate}"/>
             </TextBlock>
         </StackPanel>
     </StackPanel>

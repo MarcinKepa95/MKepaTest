@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="Go Fish!" Height="500" Width="525"
         Background="Gray">
+    <Window.Resources>
+        <local:gam/>
+    </Window.Resources>
     <Grid Margin="10">
         <Grid.RowDefinitions>
 

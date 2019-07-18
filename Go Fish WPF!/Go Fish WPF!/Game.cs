@@ -3,17 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows.Controls;
 
 namespace Go_Fish_WPF_
 {
 
-    class Game
+    class Game : INotifyPropertyChanged
     {
         private List<Player> players;
         private Dictionary<Value, Player> books;
         private Deck stock;
         private TextBox textBoxOnForm;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            
+        }
         public Game(string playerName, IEnumerable<string> opponentNames, TextBox textBoxOnForm)
         {
             Random random = new Random();
@@ -27,6 +36,21 @@ namespace Go_Fish_WPF_
             Deal();
             players[0].SortHand();
         }
+
+        public bool GameInProgress { get; private set; }
+        public bool GameNotStarted { get { return !GameInProgress; } }
+        public string PlayerName { get; set; }
+        public ObservableCollection<string> Hand { get; private set; }
+        public string Books { get { return DescribeBooks(); } }
+        public string GameProgress { get; private set; }
+
+        public Game()
+        {
+            PlayerName = "Ed";
+            Hand = new ObservableCollection<string>();
+            ResetGame();
+        }
+
         private void Deal()
         {
             stock.Shuffle();
