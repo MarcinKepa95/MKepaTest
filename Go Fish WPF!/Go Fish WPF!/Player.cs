@@ -14,17 +14,16 @@ namespace Go_Fish_WPF_
         public string Name { get { return name; } }
         private Random random;
         private Deck cards;
-        private TextBox textBoxOnForm;
+        private Game game;
         
-        public Player(String name, Random random, TextBox textBoxOnForm)
+        public Player(String name, Random random, Game game)
         {
-            this.textBoxOnForm = textBoxOnForm;
             this.name = name;
             this.random = random;
             List<Card> cart = new List<Card>();
             cards = new Deck(cart);
 
-            textBoxOnForm.Text += Name + " has just joined the game" + Environment.NewLine;
+            game.AddProgress(name + " has just joined the game");
         }
         public IEnumerable<Value> PullOutBooks()
         {
@@ -57,8 +56,8 @@ namespace Go_Fish_WPF_
         {
             Deck exactCards = cards.PullOutValues(value);
             if (exactCards.Count > 0)
-                textBoxOnForm.Text += Name + " has " + exactCards.Count + " " + Card.Plural(value) + "\r\n";
-            SortHand();
+                game.AddProgress(name + " has " + exactCards.Count + " " + Card.Plural(value));
+                SortHand();
             return exactCards;
         }
         public void AskForACard(List<Player> players, int myIndex, Deck stock)
@@ -67,7 +66,7 @@ namespace Go_Fish_WPF_
         }
         public void AskForACard(List<Player> players, int myIndex, Deck stock, Value value)
         {
-            textBoxOnForm.Text += Name + " asks if anyone has a " + value+Environment.NewLine;
+            game.AddProgress(name + " asks if anyone has a "+value);
             int DeckCount = CardCount;
             foreach(Player player in players)
             {
@@ -83,7 +82,7 @@ namespace Go_Fish_WPF_
             }
             if (DeckCount == 0)
             {
-                textBoxOnForm.Text += Name + " had to draw from the stock";
+                game.AddProgress(name + " must draw from the stock.");
                 TakeCard(stock.Deal(0));
             }
             SortHand();

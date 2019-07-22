@@ -7,10 +7,12 @@
         mc:Ignorable="d"
         Title="Go Fish!" Height="500" Width="525"
         Background="Gray">
+    <!---->
     <Window.Resources>
-        <local:gam/>
+        <local:Game x:Key="game"/>
     </Window.Resources>
-    <Grid Margin="10">
+    
+    <Grid Margin="10" DataContext="{StaticResource ResourceKey=game}">
         <Grid.RowDefinitions>
 
             <RowDefinition Height="auto"/>
@@ -28,8 +30,8 @@
         </Grid.ColumnDefinitions>
         <TextBlock Text="Your name"/>
         <StackPanel Orientation="Horizontal" Grid.Row="1">
-            <TextBox x:Name="PlayerName" FontSize="12" Width="150"/>
-            <Button x:Name="startButton" Margin="5,0" Content="Start the game!" Click="StartButton_Click"/>
+            <TextBox x:Name="PlayerName" FontSize="12" Width="150" Text="{Binding PlayerName, Mode=TwoWay}" IsEnabled="{Binding GameNotStarted}"/>
+            <Button x:Name="startButton" Margin="5,0" Content="Start the game!" Click="StartButton_Click" IsEnabled="{Binding GameNotStarted}"/>
         </StackPanel>
 
         <TextBlock Text="Game progress" Grid.Row="2" Margin="0,10,0,0"/>
@@ -37,10 +39,12 @@
         <TextBlock Text="Books" Margin="0,10,0,0" Grid.Row="4"/>
         <ScrollViewer FontSize="12" Grid.Row="5" Background="White" Foreground="Black" 
                       Grid.RowSpan="2"/>
-        <TextBlock Text="Your Hand" Grid.Row="0" Grid.Column="2"/>
+        <TextBlock Text="Your Hand" Grid.Row="0" Grid.Column="2" IsEnabled="{Binding GameInProgress}"/>
         <ListBox x:Name="cards" Background="White" FontSize="12" Height="Auto" Grid.Row="1"
-                 Margin="0,0,0,10" Grid.RowSpan="5" Grid.Column="2"/>
+                 Margin="0,0,0,10" Grid.RowSpan="5" Grid.Column="2" ItemsSource="{Binding Hand}" IsEnabled="{Binding GameInProgress}"
+                 MouseDoubleClick="cards_MouseDoubleClick"/>
         <Button x:Name="askForACard" Content="Ask for a card" HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch" Grid.Row="6" Grid.Column="2" Click="AskForACard_Click"/>
+                VerticalAlignment="Stretch" Grid.Row="6" Grid.Column="2" Click="AskForACard_Click"
+                IsEnabled="{Binding GameInProgress}"/>
     </Grid>
 </Window>

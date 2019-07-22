@@ -13,28 +13,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Go_Fish_WPF_
+namespace Chapter_11_Application_3
 {
     /// <summary>
     /// Logika interakcji dla klasy MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
+        Class1 klasa;
         public MainWindow()
         {
             InitializeComponent();
-            game = this.FindResource("game") as Game;
-
-
-        }
-        private Game game;
-        private void AskForACard_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void StartButton_Click(object sender, RoutedEventArgs e)
-        {
+            klasa = new Class1();
+            Console.WriteLine(klasa.i);
+            klasa.zmieni();
+            Console.WriteLine(klasa.i);
 
         }
     }

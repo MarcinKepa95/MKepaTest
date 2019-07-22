@@ -13,29 +13,38 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Go_Fish_WPF_
+namespace Chapter_11_Application_2
 {
     /// <summary>
     /// Logika interakcji dla klasy MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
+        GuyManager guyManager;
         public MainWindow()
         {
             InitializeComponent();
-            game = this.FindResource("game") as Game;
-
-
-        }
-        private Game game;
-        private void AskForACard_Click(object sender, RoutedEventArgs e)
-        {
-
+            guyManager = FindResource("guyManager") as GuyManager;
         }
 
-        private void StartButton_Click(object sender, RoutedEventArgs e)
+        private void ReadNewGuy_Click(object sender, RoutedEventArgs e)
         {
+            guyManager.ReadGuy();
+        }
 
+        private void WriteJoe_Click(object sender, RoutedEventArgs e)
+        {
+            guyManager.WriteGuy(guyManager.Joe);
+        }
+
+        private void WriteBob_Click(object sender, RoutedEventArgs e)
+        {
+            guyManager.WriteGuy(guyManager.Bob);
+        }
+
+        private void WriteEd_Click(object sender, RoutedEventArgs e)
+        {
+            guyManager.WriteGuy(guyManager.Ed);
         }
     }
 }

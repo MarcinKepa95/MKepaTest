@@ -15,18 +15,21 @@ namespace Go_Fish_WPF_
         private List<Player> players;
         private Dictionary<Value, Player> books;
         private Deck stock;
-        private TextBox textBoxOnForm;
+        //private TextBox textBoxOnForm;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged(string propertyName)
         {
-            
+            PropertyChangedEventHandler propertyChangedEvent = PropertyChanged;
+            if (propertyChangedEvent != null)
+                propertyChangedEvent(this, new PropertyChangedEventArgs(propertyName));
         }
+        /*
         public Game(string playerName, IEnumerable<string> opponentNames, TextBox textBoxOnForm)
         {
             Random random = new Random();
-            this.textBoxOnForm = textBoxOnForm;
+            //this.textBoxOnForm = textBoxOnForm;
             players = new List<Player>();
             players.Add(new Player(playerName, random, textBoxOnForm));
             foreach (string player in opponentNames)
@@ -36,7 +39,7 @@ namespace Go_Fish_WPF_
             Deal();
             players[0].SortHand();
         }
-
+        */
         public bool GameInProgress { get; private set; }
         public bool GameNotStarted { get { return !GameInProgress; } }
         public string PlayerName { get; set; }
@@ -51,6 +54,47 @@ namespace Go_Fish_WPF_
             ResetGame();
         }
 
+        public void AddProgress(string progress)
+        {
+            GameProgress += progress + Environment.NewLine + GameProgress;
+            OnPropertyChanged("GameProgress");
+        }
+        public void ClearProgress()
+        {
+            GameProgress = string.Empty;
+            OnPropertyChanged("GameProgress");
+        }
+        public void StartGame()
+        {
+            ClearProgress();
+            GameInProgress = true;
+            OnPropertyChanged("GameInProgress");
+            OnPropertyChanged("GameNotStarted");
+            Random random = new Random();
+            players = new List<Player>();
+            players.Add(new Player(PlayerName, random, this));
+            players.Add(new Player("Bob", random, this));
+            players.Add(new Player("Joe", random, this));
+            Deal();
+            players[0].SortHand();
+            Hand.Clear();
+            foreach(string cardname in GetPlayerCardNames())
+            {
+                Hand.Add(cardname);
+                if (!GameInProgress)
+                    AddProgress(DescribePlayerHands());
+                OnPropertyChanged("Books");
+            }
+        }
+        void ResetGame()
+        {
+            GameInProgress = false;
+            OnPropertyChanged("GameInProgress");
+            OnPropertyChanged("GameNotStarted");
+            books = new Dictionary<Value, Player>();
+            stock = new Deck();
+            Hand.Clear();
+        }
         private void Deal()
         {
             stock.Shuffle();
@@ -65,7 +109,7 @@ namespace Go_Fish_WPF_
             // of the game. Shuffle the stock, deal five cards to each player, then use a
             // foreach loop to call each player's PullOutBooks() method.
         }
-        public bool PlayOneRound(int selectedPlayerCard)
+        public void PlayOneRound(int selectedPlayerCard)
         {
             
             Value cardToAskFor = players[0].Peek(selectedPlayerCard).value;
@@ -78,8 +122,7 @@ namespace Go_Fish_WPF_
                 else players[i].AskForACard(players, i, stock);
                 if (PullOutBooks(players[i]))
                 {
-                    textBoxOnForm.Text += players[i].Name
-                        + " drew a new hand" + Environment.NewLine;
+                    AddProgress(players[i].Name + " drew a new hand");
                     int card = 1;
                     while (card <= 5 && stock.Count > 0)
                     {
@@ -89,29 +132,42 @@ namespace Go_Fish_WPF_
                 }
                 else if (cardcount == players[i].CardCount)
                     players[i].TakeCard(stock.Deal());
-                
+
+                OnPropertyChanged("Books");
                 if(stock.Count==0)
                 {
-                    textBoxOnForm.Text = "The stock is out of cards! Game Over!"+ Environment.NewLine;
-                    return true;
+                    AddProgress("The stock is out of cards. Game Over!");
+                    AddProgress("The winner is... "+GetWinnerName());
+                    ResetGame();
+                    //textBoxOnForm.Text = "The stock is out of cards! Game Over!"+ Environment.NewLine;
+                    return;
                 }
             }
-            for(int i=0; i<players.Count; i++)
+
+            Hand.Clear();
+            foreach(string cardName in GetPlayerCardNames())
             {
-                if (PullOutBooks(players[i]))
-                {
-                    textBoxOnForm.Text += players[i].Name
-                        + " drew a new hand" + Environment.NewLine;
-                    int card = 1;
-                    while (card <= 5 && stock.Count > 0)
-                    {
-                        players[i].TakeCard(stock.Deal());
-                        card++;
-                    }
-                }
+                Hand.Add(cardName);
+                if (!GameInProgress)
+                    AddProgress(DescribePlayerHands());
             }
-            players[0].SortHand();
-            return false;
+
+            //for(int i=0; i<players.Count; i++)
+            //{
+            //    if (PullOutBooks(players[i]))
+            //    {
+            //        //textBoxOnForm.Text += players[i].Name
+            //            //+ " drew a new hand" + Environment.NewLine;
+            //        int card = 1;
+            //        while (card <= 5 && stock.Count > 0)
+            //        {
+            //            players[i].TakeCard(stock.Deal());
+            //            card++;
+            //        }
+            //    }
+            //}
+            //players[0].SortHand();
+            //return false;
             // Play one round of the game. The parameter is the card the player selected
             // from his hand—get its value. Then go through all of the players and call
             // each one's AskForACard() methods, starting with the human player (who's
