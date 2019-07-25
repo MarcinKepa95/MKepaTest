@@ -1,0 +1,9 @@
+﻿<Application x:Class="Chapter_16_Application_2.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Chapter_16_Application_2"
+             StartupUri="View/LeagueWindow.xaml">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>
